@@ -1,0 +1,41 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  
+  /* Header and footer */
+  header, footer {
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  /* Blog post styling */
+  .post {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .post h2 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+  
+  .post p {
+    font-size: 1em;
+  }
+  
+  /* Link styling */
+  a {
+    color: #007acc;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
