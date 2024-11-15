@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS61A,Learning Lambda Calculus</title>
+  <link rel="stylesheet" href="../style.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+   <!-- CodeMirror CSS and JavaScript -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+ 
+   <!-- Pyodide for running Python code -->
+   <script src="https://cdn.jsdelivr.net/pyodide/v0.22.1/full/pyodide.js"></script>
+</head>
+<body>
+  <h1>CS61A,Learning Lambda Calculus</h1>
+  <p>Published on: November 14, 2024</p>
+  <h3>Intro</h3>
+  <p>Currently, I am learning CS61A of UCB, it is well reputated, so I decided to take a look on it. 
+    I decided to work on it's lab, homework, and project only. 
+    Ok, so basically CS61A emphasized a lot on the concept of 'function' in first chapter, 
+    what they are trying to do is telling students that everthing can be a function
+    <br/>
+    Functions's input and output could be a function, booleans can be a function,
+    integers can also be a function!!!<br/>
+    
+</p>
+<h3>Content</h3>
+<p>
+    <h4>Part 1: What is lambda calculus and lambda expression?</h4>
+    <p>Based on my understanding, lambda calculus is a computation model invented which is equivalent to Turing Machine. It primarily focus on something like
+         \(\lambda x.M\)  where \(x\) is the input and \(M\) is the output.
+    <br/> 
+    We can take it as \(f(x)=M\), however, \(x\) and \(M\) could be function.<br/>
+    Lambda expresion is a feature introduced by each programming language in order to have ability of doing functional programming.
+    </p>
+    <!-- Editable code area -->
+     
+    <textarea id="code1" rows="30" cols="30" class="code">
+# Write your Python code here
+f = lambda x:x+1
+print(f(2))
+</textarea>
+        
+          <!-- Button to run the code -->
+          <button onclick="runPythonCode(1)">Run Code</button>
+        
+          <!-- Area to show output -->
+          <h3>Output:</h3>
+          <pre id="output1"></pre>
+        
+          
+        
+The above code snippets is an example of a function \(f(x)=x+1\) using lambda expresion.
+</p>
+<p>
+    <h4>Part 2: Pure Function</h4>
+    <p>Pure function is a function that will produce same output if given same input
+        The following is an example of pure and non-pure function.
+        Pure function is one of the characteristic of lambda calculus
+    <textarea id="code2" rows="5" cols="30" class="code">
+# Write your Python code here
+
+global_v =1
+#Pure function
+def pf(n):
+    return n+1
+
+#Non -pure function
+def npf(n):
+    global global_v
+    global_v+=1
+    return n+global_v
+
+print(pf(10),pf(10))
+print(npf(10),npf(10))
+
+</textarea>
+        
+          <!-- Button to run the code -->
+          <button onclick="runPythonCode(2)">Run Code</button>
+        
+          <!-- Area to show output -->
+          <h3>Output:</h3>
+          <pre id="output2"></pre>
+        
+</p>
+<p>
+    <h4>Part 3: Currying</h4>
+    <p>Currying is an indea or a way that instead of having multiple inputs, we change it so that only allowing one input.
+    Consider a function \(\lambda x y. x+y\) which takes \(x,y \) as input and \(x+y\) as output, we change it to become \(\lambda x.\lambda y . x+y\).
+    It can be seen as \(f(x,y)=x+y\) becoming \(f(x)(y)  \). In short, instead of inputting at a same time, change it to become inputting one by one.
+
+    <textarea id="code3" rows="5" cols="30" class="code">
+# Write your Python code here
+
+f= lambda x,y : x+y
+print(f(1,2))
+
+#After Currying
+g= lambda x: lambda y: x+y
+print(g(1)(2))
+
+
+</textarea>
+        
+          <!-- Button to run the code -->
+          <button onclick="runPythonCode(3)">Run Code</button>
+        
+          <!-- Area to show output -->
+          <h3>Output:</h3>
+          <pre id="output3"></pre>
+        
+</p>
+<p>
+    <h4>Part 4: What can we get from these???</h4>
+    <p>Well, by using lambda, we can actually create a programming language by ourself.
+        This gives us an another perspective of actually a programming language. For example,
+        we can define booleans \(TRUE = \lambda x.\lambda y.x\) , \(FALSE = \lambda x.\lambda y.y\) and 
+        \(IF = \lambda b.\lambda x.\lambda y.b x y \), which allow us to handle conditions.
+    <textarea id="code4" rows="5" cols="30" class="code">
+# Write your Python code here
+
+TRUE = lambda x: lambda y: x
+FALSE = lambda x: lambda y: y
+IF = lambda b:lambda x : lambda y: b(x)(y)
+
+print(IF(TRUE)(1+1)(2+2))
+print(IF(FALSE)(1+1)(2+2))
+</textarea>
+        
+          <!-- Button to run the code -->
+          <button onclick="runPythonCode(4)">Run Code</button>
+        
+          <!-- Area to show output -->
+          <h3>Output:</h3>
+          <pre id="output4"></pre>
+        
+</p>
+<p>
+    <h4>Part 5: What else???</h4>
+    <p>Not only booleans, but also integers can be defined again from that.
+    We define \(N \) to be the number of times a function is applied, i.e 
+    \(N = f(f(...f(x)))\).
+    <textarea id="code5" rows="5" cols="30" class="code">
+# Write your Python code here
+
+ZERO = lambda x:lambda f: x
+ONE = lambda x:lambda f: (f(x))
+###however, i still don't know the way define is_equal ...
+</textarea>
+        
+          <!-- Button to run the code -->
+          <button onclick="runPythonCode(5)">Run Code</button>
+        
+          <!-- Area to show output -->
+          <h3>Output:</h3>
+          <pre id="output5"></pre>
+        
+</p>
+
+<h4>Part 6: Conclusion</h4>
+<p>
+    To sum up, in daily used, lambda expression give us a quick way using a function that is used only once.
+    For example, to find a factorial of a number, we can write in the following way
+    <textarea id="code6" rows="5" cols="30" class="code">
+fac = lambda n: 1 if n==0 else n*fac(n-1)
+print(fac(3))
+
+        </textarea>
+                
+                  <!-- Button to run the code -->
+                  <button onclick="runPythonCode(6)">Run Code</button>
+                
+                  <!-- Area to show output -->
+                  <h3>Output:</h3>
+                  <pre id="output6"></pre>
+        To be continued...
+</p>
+
+
+
+
+
+
+    
+    <p><a href="../index.html">Back to Home</a></p>
+
+
+    <script>
+        // Initialize CodeMirror on the textarea
+        const Editors = document.getElementsByClassName("code");
+        var codeMirrorEditors=new Array(Editors.length);
+        
+        for(var i=0;i<Editors.length;i++){
+            codeMirrorEditors[i]=CodeMirror.fromTextArea(Editors[i], {
+                mode: "python",
+                lineNumbers: true,
+                theme: "default",
+                indentUnit: 4,
+                matchBrackets: true,
+              });
+        }
+        
+        console.log(codeMirrorEditors);
+        // Load Pyodide
+        async function loadPyodideAndPackages() {
+          window.pyodide = await loadPyodide();
+        }
+        loadPyodideAndPackages();
+    
+        async function runPythonCode(id) {
+            console.log(id, typeof(id))
+          const code = codeMirrorEditors[id-1].getValue(); // Get the code from CodeMirror editor
+          const outputElement = document.getElementById("output"+id);
+          outputElement.innerHTML = ""; // Clear previous output
+    
+          try {
+            // Run the Python code using Pyodide
+            await pyodide.runPythonAsync(`
+import sys
+from io import StringIO
+sys.stdout = StringIO()  # Redirect stdout to capture print output
+` + code + `
+output = sys.stdout.getvalue()  # Retrieve all printed output
+sys.stdout.close()  # Close the StringIO object
+output
+`);
+        // Get the output from Python code
+        const result = pyodide.globals.get("output");
+            console.log(result);
+            outputElement.innerHTML =result;
+            console.log(result);
+          } catch (error) {
+            outputElement.textContent = "Error: " + error.message;
+          }
+        }
+      </script>
+
+
+
+
+</body>
+</html>
