@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starting Internship</title>
+  <link rel="stylesheet" href="../style.css">
+    <!-- CodeMirror CSS and JavaScript -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.css" rel="stylesheet">
+</head>
+<body>
+  <h1>Starting Internship</h1>
+  <p>Published on: November 24, 2024</p>
+  <p>So now I started my internship. It was an indescribable experience</p>
+   <h3>Day 1</h3>
+   <p>Woke at 6.am, travelled to Abdullah Hukum LRT station, and took some time to find the location of the office.
+    I was given a better laptop compared with mine. Wow! After that, I was told to learn some C# by using Microsoft and FreeCodeCamp's tutorial, I finished it in 1 day and got a certificate. 
+    Pretty simple, then I was a given a PluralSight account to learn some more C#'s stuffs'.
+   </p>
+   <h3>Day 2</h3>
+   <p>Ok now I realized that it was impossible for me to finish those topic in 1 day. The topics included: Debugger, Exception handling, LINQ,Asynchronous, Dependency Injection, ...
+    Finished the Debugger and Exception handling.<br/>
+    Revision:
+    <pre>
+        <code class="language-csharp">
+using System;
+namespace HelloWorld
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try{
+                dosomething()
+            }catch(Exception e) when (e is .. || ...){
+                throw new Exception ...
+            }
+            finally{
+                dosomething();
+            }
+        }
+    }
+}
+        </code>
+            </pre>
+This is what I could recall... For Visual Studip Debugger, I only remember about set a breakpoint... I suddenly found out that the way i debugg is quite stupid as I only print out the value of variable. I guessed this a bad habit that I got when I participate in competitive programming. 
+
+   </p>
+   <h3>Day 3&4</h3>
+   <p>Started LINQ, it is really a big topic for me... In my understanding, it is something similar to SQL statement. I think I have seen similar things in Laravel's 
+    Eloqeuent but that is for database. LINQ is able to apply on list-like object or object that implements the interface "IEnumerable". 
+    There are 2 types of LINQ, in method or query way. <br/>Example:
+    <pre>
+        <code class="language-csharp">
+using System;
+namespace HelloWorld
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> A = new List<int>{1,2,3};
+            A = (from num in A  where num %2 ==0 select num);
+            list = (from a in A orderby a.X descending,a.Y ascending select a).ToList();
+            /*
+            All,Any,Contains => EqualityComparer<T>
+            list = (QUERY).All(lambda)
+            */
+
+        }
+    }
+}
+
+        </code>
+            </pre>
+OK I could not remember all of it, but I think I know what is it talking about. When I am going to use it, I will tell ChatGPT to write for me or look at the Microsoft Documentation.
+I remember that some of it should be pass a lambda function as input into it to be used. Besides, it support something like making a list then pass the list into another ... I forget where I got this already... But take note of it.
+BTW, I think Microsoft's Documentation is better than Laravel's .
+</p>
+
+<h3>Day 5</h3>
+   <p>Asynchronous Programming in C# really make me confusing... Although getting an A- in my Operating System, I still felt that 
+    I didn't know Operating System. Process, threads, multithreading, asynchronous await, concurreny and parallelism ... these concepts
+    still confusing me. I really had to relearn my Operating System. C#'s async and await looks similar to JS, but C# is support multithreading which means it is 
+    really achieved multithreading. Besides that, C#'s Task also look similar to JS's Promise.
+    
+    <br/>
+    Based on my understanding, async and await are like calling a very slow function and we had to wait for it, so we left and do other things first, then finally come back to collect result...
+    An async void function should be an event-handle function, others should be async Task function... Therefore, can assume every async function as a task to be completed soon...
+    Ok, I don't know what am I talking about, perhaps I still cannot get it. Really had to relearn my OS.
+    <pre>
+        <code class="language-csharp">
+public static async Task Start(int i)
+{
+    for (int j = 0; j < 100; j++)
+    {
+        Console.WriteLine("thread " + i + " " + j);
+    }
+
+    // Async delay without blocking
+    await Task.Delay(1000);  // Await the delay to simulate async work (like waiting for data)
+}
+
+static async Task Main(string[] args)
+{
+    // Start the asynchronous tasks
+    var x = Start(1);
+    var y = Start(2);
+    var z = Start(3);
+
+    // Wait for all tasks to finish
+    await Task.WhenAll(x, y, z);
+}
+        </code>
+            </pre>
+OK so from the example , I think this clearly show what I said...
+</p>
+    <p><a href="../index.html">Back to Home</a></p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+</body>
+</html>
